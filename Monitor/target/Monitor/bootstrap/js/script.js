@@ -14,17 +14,17 @@ $.ajax({
   context: document.body
 }).done(function(data) {
 var headers=[ ""], rows={}
-     headers.push("Errors");
-   $.each(data.processTimeList,function(clientIdx,item){
-  
-	   rows[clientIdx]=item;
+     headers.push("Status");
+   $.each(data,function(clientIdx,item){
+		rows[clientIdx] = "<b>"+item.code+"</b>" + "        " + item.time
+	   
 
   })
   var rowHtml='<tr><th>'+headers.join('</th><th>')+'</th></tr>';
   $.each(rows,function(key, arr){
     rowHtml+='<tr><td>'+key+'</td>';
-    rowHtml +='<td>'+arr+'  Milliseconds'+'</td><td>'+'</td></tr>';
-	$('#processTable').html(rowHtml);
+    rowHtml +='<td>'+arr+' '+'</td><td>'+'</td></tr>';
+	$('#statusTable').html(rowHtml);
   })
 });
  
@@ -32,6 +32,36 @@ var headers=[ ""], rows={}
     			alert(err);
     }
 }
+
+function getResolution(data)
+{
+	try{
+
+$.ajax({
+  url: BASE_URL + 'monitor/qps/'+data ,
+  context: document.body
+}).done(function(data) {
+var headers=[ ""], rows={}
+     headers.push("Status");
+   $.each(data,function(clientIdx,item){
+		rows[clientIdx] = "<b>"+item.code+"</b>" + "        " + item.time
+	   
+
+  })
+  var rowHtml='<tr><th>'+headers.join('</th><th>')+'</th></tr>';
+  $.each(rows,function(key, arr){
+    rowHtml+='<tr><td>'+key+'</td>';
+    rowHtml +='<td>'+arr+' '+'</td><td>'+'</td></tr>';
+	$('#messagesTable').html(rowHtml);
+  })
+});
+ 
+    }catch(err){
+    			alert(err);
+    }
+}
+
+
 function getProcessingTime()
 {
 	try{
@@ -70,18 +100,18 @@ $.ajax({
   url: BASE_URL + 'monitor/queuedepth' ,
   context: document.body
 }).done(function(data) {
-var headers=[ ""], rows={}
-     headers.push("Pending Requests");
+//var headers=[ ""], rows={}
+  //   headers.push("Pending Requests");
 //   $.each(data.processTimeList,function(clientIdx,item){
   
 	//   rows[clientIdx]=item;
 
 //  })
-  var rowHtml='<tr><th>'+headers.join('</th><th>')+'</th></tr>';
+  //var rowHtml='<tr><th>'+headers.join('</th><th>')+'</th></tr>';
  // $.each(rows,function(key, arr){
   //  rowHtml+='<tr><td>'+1+'</td>';
-    rowHtml +='<td>'+data+'  Pending'+'</td><td>'+'</td></tr>';
-	$('#pendingTable').html(rowHtml);
+  //  rowHtml +='<td>'+data+'  Pending'+'</td><td>'+'</td></tr>';
+	$('#pendingTable').html(data);
   //})
 });
  

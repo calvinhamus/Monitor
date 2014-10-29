@@ -46,6 +46,8 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="#">Monitor</a>
+		  <a class="brand" href="#">Pending Requests</a>
+		   <a class="brand" href="#" id="pendingTable">Pending Requests</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
       
@@ -72,16 +74,33 @@
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span4">
-          <h2>Processing Time</h2>
-<table class="table table-striped" id="processTable">
+	
+	    <div class="span4">
+          <h2>Messages Processed</h2>
+  <div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				Resolution
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getResolution('minute')" >minute</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getResolution('hour')">hour</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getResolution('day')">day</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getResolution('month')">month</a></li>
+			  </ul>
+			</div>
+			      <table class="table table-striped" id="messagesTable">
     </table>
         </div>
         <div class="span4">
-          <h2>Pending Requests</h2>
-          <table class="table table-striped" id="pendingTable">
-    </table>
-       </div>
+          <h2>Processing Time</h2>
+			<table class="table table-striped" id="processTable">
+			</table>
+        </div>
+		
+
+	      
         <div class="span4">
 		
 		
@@ -104,6 +123,11 @@
 			      <table class="table table-striped" id="statusTable">
     </table>
         </div>
+  		 <!--       <div class="span4">
+          <h2>Pending Requests</h2>
+          <table class="table table-striped" id="pendingTable">
+    </table>
+       </div>-->
       </div>
 
       <hr>
